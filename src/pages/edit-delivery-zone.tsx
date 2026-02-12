@@ -1,14 +1,21 @@
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import ZoneForm from "@/components/zone-form";
 import type { DeliveryZone } from "@/lib/schemas/delivery-zone";
-import { createZone } from "@/lib/storage/delivery-zone";
-import { useNavigate } from "react-router-dom";
+import { getZones, updateZone } from "@/lib/storage/delivery-zone";
+import { useNavigate, useParams } from "react-router-dom";
 
-export default function CreateDeliveryZone() {
+export default function EditDeliveryZone() {
+    const { id } = useParams();
     const navigate = useNavigate();
 
+    const zone = getZones().find((z) => z.id === id);
+
+    if (!zone) return <div>Zone not found</div>;
+
+
+
     const handleCreate = (values: DeliveryZone) => {
-        createZone(values);
+        updateZone(values);
         navigate("/");
     };
     return (
@@ -18,7 +25,8 @@ export default function CreateDeliveryZone() {
             </CardHeader>
 
             <CardContent className="space-y-6">
-                <ZoneForm onSubmit={handleCreate} />
+                <ZoneForm onSubmit={handleCreate} defaultValues={zone}
+                />
 
             </CardContent>
 

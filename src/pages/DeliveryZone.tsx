@@ -2,10 +2,18 @@ import DeliveryZoneFeatureCard from "@/components/delivery-zone-feature-card"
 import { Button } from "@/components/ui/button"
 import { ButtonGroup } from "@/components/ui/button-group"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
+import type { DeliveryZone } from "@/lib/schemas/delivery-zone"
+import { getZones } from "@/lib/storage/delivery-zone"
 import { MapPlus } from "lucide-react"
+import { useCallback, useState } from "react"
 import { Link } from "react-router-dom"
 
-const DeliveryZone: React.FC = () => {
+const DeliveryZoneList: React.FC = () => {
+    const [zones, setZones] = useState<DeliveryZone[]>(() => getZones());
+
+    const refreshZones = useCallback(() => {
+        setZones(getZones());
+    }, []);
     return (
         <Card>
             <CardHeader>
@@ -14,13 +22,8 @@ const DeliveryZone: React.FC = () => {
             </CardHeader>
             <CardContent>
                 <div className="grid gap-4 md:grid-cols-3 sm:grid-cols-2 ">
-                    {Array(5).fill({
-                        title: "Delivery Zone",
-                        description: "Delivery Zone Description",
-                        id: "1"
-
-                    }).map(({ title, description, id }, i) => (
-                        <DeliveryZoneFeatureCard key={i} Title={title} Description={description} id={id} />
+                    {zones.map(({ id, hexagons, name }) => (
+                        <DeliveryZoneFeatureCard key={id} Title={name} Description={`${hexagons.length} selected zones`} id={id} onDelete={refreshZones} />
                     ))}
                 </div>
             </CardContent>
@@ -37,4 +40,4 @@ const DeliveryZone: React.FC = () => {
         </Card>
     )
 }
-export default DeliveryZone
+export default DeliveryZoneList

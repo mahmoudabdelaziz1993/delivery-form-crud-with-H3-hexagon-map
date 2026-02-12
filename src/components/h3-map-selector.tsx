@@ -48,9 +48,10 @@ export default function H3MapSelector({ value, onChange }: Props) {
             />
 
             {hexagons.map((hex) => {
-                const boundary = h3.cellToBoundary(hex, true).map(
-                    ([lat, lng]) => [lat, lng] as [number, number]
-                );
+                const boundary = h3
+                    .cellToBoundary(hex)
+                    .map(([lat, lng]) => [lat, lng] as [number, number]);
+
                 const isSelected = value.includes(hex);
                 const isNeighbor = neighbors.includes(hex);
 
