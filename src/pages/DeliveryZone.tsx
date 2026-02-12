@@ -2,12 +2,14 @@ import DeliveryZoneFeatureCard from "@/components/delivery-zone-feature-card"
 import { Button } from "@/components/ui/button"
 import { ButtonGroup } from "@/components/ui/button-group"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
+import { MapPlus } from "lucide-react"
+import { Link } from "react-router-dom"
 
 const DeliveryZone: React.FC = () => {
     return (
         <Card>
             <CardHeader>
-                <CardTitle>Delivery Zone</CardTitle>
+                <CardTitle className="scroll-m-20 pb-2 text-3xl font-semibold tracking-tight first:mt-0">Delivery Zone</CardTitle>
                 <CardDescription>manage your delivery zone </CardDescription>
             </CardHeader>
             <CardContent>
@@ -24,9 +26,12 @@ const DeliveryZone: React.FC = () => {
             </CardContent>
             <CardFooter>
                 <ButtonGroup>
-                    <Button>
-                        Create Delivery Zone
-                    </Button>
+                    <Link to="/create-delivery-zone">
+                        <Button>
+                            <MapPlus />
+                            Create Delivery Zone
+                        </Button>
+                    </Link>
                 </ButtonGroup>
             </CardFooter>
         </Card>

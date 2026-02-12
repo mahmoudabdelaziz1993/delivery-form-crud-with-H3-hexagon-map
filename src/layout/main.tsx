@@ -12,6 +12,9 @@ const MainLayout: React.FC = () => {
                 <Link to="/delivery-zone">
                     <Button variant="ghost">Delivery Zone</Button>
                 </Link>
+                <Link to="/create-delivery-zone">
+                    <Button variant="ghost">Create Delivery Zone</Button>
+                </Link>
             </header>
 
             <main className="flex-1 p-6">
