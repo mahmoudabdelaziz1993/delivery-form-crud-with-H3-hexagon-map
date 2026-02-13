@@ -21,11 +21,13 @@ const DeliveryZoneFeatureCard: React.FC<Props> = ({ Title, Description, id, onDe
             </CardHeader>
             <CardFooter className="justify-end ">
                 <ButtonGroup>
-                    <Link to={`/delivery-zone/edit/${id}`}>
-                        <Button size={'icon'} variant={'secondary'} >
+                    <Button size={'icon'} variant={'secondary'} >
+                        <Link to={`/delivery-zone/edit/${id}`}>
+
                             <Edit />
-                        </Button>
-                    </Link>
+
+                        </Link>
+                    </Button>
                     <Button size={'icon'} variant={'destructive'} onClick={
                         () => {
                             deleteZone(id)

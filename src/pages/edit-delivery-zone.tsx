@@ -21,7 +21,7 @@ export default function EditDeliveryZone() {
     return (
         <Card className="max-w-5xl mx-auto">
             <CardHeader>
-                <CardTitle className="scroll-m-20  pb-2 text-3xl font-semibold tracking-tight first:mt-0">Create Delivery Zone</CardTitle>
+                <CardTitle className="scroll-m-20  pb-2 text-3xl font-semibold tracking-tight first:mt-0">Edit Delivery Zone </CardTitle>
             </CardHeader>
 
             <CardContent className="space-y-6">
